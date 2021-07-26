@@ -9,6 +9,7 @@ fn main() {
     let vec_refs: [&mut Vec<i32>; 3] = [&mut vec_1, &mut vec_2, &mut vec_3];
 
     // INSTRUCTIONS
+    println!("");
     println!("In the spirit of the tower of Hanoi, move all numbers (discs) from the 1st set (rod) to the 3rd. You can only move one number at a time and you are only able to move the top (right-most) number from any given set. You cannot put a larger number on a smaller number");
 
     fn set_target(target: &mut i32, vec_refs: &[&mut Vec<i32>; 3], origin: i32) -> bool {
@@ -66,18 +67,21 @@ fn main() {
         }
     }
 
+    fn display_vectors(vec_refs: &[&mut Vec<i32>; 3]) {
+        println!("");
+        println!("1: {:?}", vec_refs[0]);
+        println!("2: {:?}", vec_refs[1]);
+        println!("3: {:?}", vec_refs[2]);
+        println!("");
+    }
+
     // GAME LOOP
     loop {
         // INPUT LOGIC
         let mut origin: i32 = 0;
         let mut destination: i32 = 0;
 
-        // VECTOR INFO
-        println!("");
-        println!("1: {:?}", vec_refs[0]);
-        println!("2: {:?}", vec_refs[1]);
-        println!("3: {:?}", vec_refs[2]);
-        println!("");
+        display_vectors(&vec_refs);
 
         // CHOOSE ORIGIN AND DESTINATION
         println!("move top item from...?");
@@ -95,11 +99,7 @@ fn main() {
 
         let final_vec: Vec<i32> = vec![3, 2, 1];
         if *vec_refs[2] == final_vec {
-            println!("");
-            println!("1: {:?}", vec_refs[0]);
-            println!("2: {:?}", vec_refs[1]);
-            println!("3: {:?}", vec_refs[2]);
-            println!("");
+            display_vectors(&vec_refs);
             println!("");
             println!("You did it!");
             println!("");
