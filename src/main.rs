@@ -96,6 +96,11 @@ fn main() {
         let final_vec: Vec<i32> = vec![3, 2, 1];
         if *vec_refs[2] == final_vec {
             println!("");
+            println!("1: {:?}", vec_refs[0]);
+            println!("2: {:?}", vec_refs[1]);
+            println!("3: {:?}", vec_refs[2]);
+            println!("");
+            println!("");
             println!("You did it!");
             println!("");
             break;
