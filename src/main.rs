@@ -18,19 +18,25 @@ fn main() {
         match buf.trim_end().parse::<usize>() {
             // input exists
             Ok(input) => {
-                // check if input is out of bounds
-                if input > vec_refs.len() || input <= 0 {
-                    println!();
-                    println!("***out of bounds***");
-                    println!();
-                    return false;
-                } else if origin > 0 {
+                if origin > 0 {
                     // origin will be greater than 0 while setting the destination
                     check_destination(target, vec_refs, origin, input)
                 } else {
-                    *target = input;
-                    true
+                    match vec_refs.get(input - 1) {
+                        Some(_) => {
+                            println!("{:?}", vec_refs.get(input - 1));
+                            *target = input;
+                            true
+                        }
+                        None => {
+                            println!();
+                            println!("***out of bounds***");
+                            println!();
+                            return false;
+                        }
+                    }
                 }
+                // check if input is out of bounds
             }
             Err(_) => {
                 println!();
