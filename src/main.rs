@@ -16,28 +16,34 @@ fn main() {
         let mut buf = String::new();
         io::stdin().read_line(&mut buf).unwrap();
         match buf.trim_end().parse::<usize>() {
-            // input exists
+            // input is correct
             Ok(input) => {
-                if origin > 0 {
-                    // origin will be greater than 0 while setting the destination
-                    check_destination(target, vec_refs, origin, input)
-                } else {
-                    match vec_refs.get(input - 1) {
-                        Some(_) => {
-                            println!("{:?}", vec_refs.get(input - 1));
-                            *target = input;
-                            true
+                //check if input is correct
+                if let None = input.checked_sub(1) {
+                    println!();
+                    println!("***out of bounds***");
+                    println!();
+                    return false;
+                }
+                match vec_refs.get(input - 1) {
+                    Some(_) => {
+                        if origin > 0 {
+                            // origin will be greater than 0 while setting the destination
+                            return check_destination(target, vec_refs, origin, input);
                         }
-                        None => {
-                            println!();
-                            println!("***out of bounds***");
-                            println!();
-                            return false;
-                        }
+                        *target = input;
+                        true
+                    }
+                    None => {
+                        // Input out of bounds
+                        println!();
+                        println!("***out of bounds***");
+                        println!();
+                        return false;
                     }
                 }
-                // check if input is out of bounds
             }
+            // incorrect input
             Err(_) => {
                 println!();
                 println!("***incorrect input***");
