@@ -18,7 +18,7 @@ fn main() {
         match buf.trim_end().parse::<usize>() {
             // input is correct
             Ok(input) => {
-                //check if input is correct
+                //check if input is in bounds
                 if let None = input.checked_sub(1) {
                     println!();
                     println!("***out of bounds***");
